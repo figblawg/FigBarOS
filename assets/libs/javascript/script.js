@@ -1,58 +1,36 @@
-const canvas = document.getElementById('particles');
-const ctx = canvas.getContext('2d');
-let particles = [];
+function autoplayvideo() {
+    this.video = document.createElement('video');
+    this.video.src = 'assets/images/index.mp4';
+    this.video.loop = true;
+    this.video.volume = 0.3;
+    this.video.muted = false;
+    this.video.autoplay = false;
+    this.video.playsInline = true;
+    this.video.setAttribute('id', 'background-video');
+    document.body.appendChild(this.video);
 
-function resize() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+    this.playing = false;
+    this.started = false;
+
+    const start = () => {
+        if (!this.started) {
+            this.video.currentTime = 70;
+            this.video.play()
+                .then(() => {
+                    this.playing = true;
+                    this.started = true;
+                })
+                .catch(e => {
+                    console.error('Video Failed to Play:', e);
+                });
+        }
+    };
+
+    document.addEventListener('click', start, { once: true });
 }
 
-window.addEventListener('resize', resize);
-resize();
+autoplayvideo();
 
-class Bubble {
-  constructor() {
-    this.reset();
-  }
-
-  reset() {
-    this.x = Math.random() * canvas.width;
-    this.y = canvas.height + Math.random() * 100;
-    this.size = 5 + Math.random() * 10; 
-    this.speed = 0.5 + Math.random() * 1.5;
-    this.opacity = 0.2 + Math.random() * 0.4;
-  }
-
-  update() {
-    this.y -= this.speed;
-    if (this.y < -this.size) this.reset();
-  }
-
-  draw() {
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(173, 216, 230, ${this.opacity})`; 
-    ctx.fill();
-    ctx.strokeStyle = `rgba(255, 255, 255, ${this.opacity + 0.2})`;
-    ctx.lineWidth = 1;
-    ctx.stroke();
-  }
-}
-
-for (let i = 0; i < 100; i++) {
-  particles.push(new Bubble());
-}
-
-function animate() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  particles.forEach(p => {
-    p.update();
-    p.draw();
-  });
-  requestAnimationFrame(animate);
-}
-
-animate();
 
 function autoplaymusic() {
 	this.audio = new Audio('assets/music/index.mp3');
