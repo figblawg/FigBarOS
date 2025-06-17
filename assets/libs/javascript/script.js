@@ -14,7 +14,6 @@ function autoplayvideo() {
 
     const start = () => {
         if (!this.started) {
-            this.video.currentTime = 70;
             this.video.play()
                 .then(() => {
                     this.playing = true;
