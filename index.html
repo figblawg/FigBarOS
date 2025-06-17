@@ -22,29 +22,6 @@ ___________.__      __________.__
       transition: filter 1s ease;
     }
 
-    .bubble {
-      position: fixed;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.6);
-      pointer-events: none;
-      animation: floatUp 2s ease-out forwards;
-      z-index: 9999;
-    }
-
-    @keyframes floatUp {
-      0% {
-        transform: translateY(0) scale(1);
-        opacity: 1;
-      }
-
-      100% {
-        transform: translateY(-100px) scale(1.5);
-        opacity: 0;
-      }
-    }
-
     #overlay {
       position: fixed;
       top: 0;
@@ -93,6 +70,25 @@ ___________.__      __________.__
         transform: rotateY(360deg);
       }
     }
+   
+  .cursor {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    border-radius: 50%;
+    transition: transform 0.1s ease;
+  }
+
+  .cursor {
+    top: 0;
+    left: 0;
+    width: 12px;
+    height: 12px;
+    background-color: black;
+    border: 2px solid white;
+    box-shadow: 0 0 6px 2px rgba(255, 255, 255, 0.5);
+    transform: translate(-50%, -50%);
+  }
   </style>
 </head>
 <body>
@@ -123,20 +119,27 @@ ___________.__      __________.__
       });
     });
   </script>
-  <script>
-    document.addEventListener('mousemove', function(e) {
-      const bubble = document.createElement('div');
-      bubble.classList.add('bubble');
-      const size = Math.random() * 8 + 4;
-      bubble.style.width = `${size}px`;
-      bubble.style.height = `${size}px`;
-      bubble.style.left = `${e.clientX}px`;
-      bubble.style.top = `${e.clientY}px`;
-      document.body.appendChild(bubble);
-      setTimeout(() => {
-        bubble.remove();
-      }, 2000);
-    });
-  </script>
+<script>
+  const cursor = document.querySelector('.cursor');
+  let mousx = 0, mousy = 0;
+  let outx = 0, outy = 0;
+
+  document.addEventListener('mousemove', (e) => {
+    mousx = e.clientX;
+    mousy = e.clientY;
+
+    cursor.style.left = `${mousx}px`;
+    cursor.style.top = `${mousy}px`;
+  });
+
+  function folow() {
+    outx += (mousx - outx) * 0.1;
+    outy += (mousy - outy) * 0.1;
+
+    requestAnimationFrame(folow);
+  }
+
+  folow();
+</script>
 </body>
 </html>
