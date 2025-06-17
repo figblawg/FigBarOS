@@ -1,0 +1,100 @@
+body {
+  margin: 0;
+  background: black;
+  color: white;
+  font-family: sans-serif;
+  overflow: hidden;
+}
+
+#particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 80px;
+  z-index: 1;
+  position: relative;
+}
+
+.tab-buttons {
+  margin-bottom: 20px;
+}
+
+.tab-buttons button {
+  background: none;
+  color: white;
+  border: 1px solid white;
+  padding: 10px 20px;
+  margin: 0 5px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tab-buttons button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px white;
+}
+
+.profile-section {
+  display: flex;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.profile-pic {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: gray;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 0 30px 10px rgba(255, 255, 255, 0.2);
+}
+
+.tagline {
+  font-size: 24px;
+  font-weight: bold;
+  background: linear-gradient(270deg, #ff6ec4, #42a5f5, #7f00ff, #00ffe7);
+  background-size: 800% 800%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: effectmovemnt 30s ease infinite;
+}
+
+@keyframes effectmovemnt {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.about-box {
+  margin-top: 20px;
+  border: 2px solid white;
+  border-radius: 10px;
+  padding: 20px 30px;
+  max-width: 600px;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.15);
+}
+
+audio {
+  display: none;
+}
