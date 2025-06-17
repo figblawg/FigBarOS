@@ -94,11 +94,11 @@ function show_about() {
     <div class="about-box">
       <p style="text-align:center;">* Bio *</p>
       <p>
-          --PLACEHOLDER--
+          I love making edits, sleeping, and playing games.<br> My favorite food is chicken alfredo.
       </p>
       <p style="text-align:center;">* Socials *</p>
       <p>
-          --PLACEHOLDER--
+          Youtube: @d1_jj1
       </p>
     </div>
   `;
